@@ -49,16 +49,13 @@ function character(name, charClass, hp, baseAttk, def, counterAttack, range) {
 
 }
 
-var Knight = new character("Bast", "knight", 250, 2, 45, 20, false);
-var Mage = new character("Denna", "mage", 100, 4, 25, 40, true);
-var Priest = new character("Auri", "priest", 130, 3, 15, 50, true);
-var Monk = new character("Tempi", "monk", 160, 3, 45, 45, false);
-var Troll = new character("Troll", "enemy", 150, 4, 15, 35, false);
-var Slime = new character("Slime", "enemy", 80, 2, 10, 20, false);
+// var Knight = new character("Bast", "knight", 250, 2, 45, 20, false);
+// var Mage = new character("Denna", "mage", 100, 4, 25, 40, true);
+// var Priest = new character("Auri", "priest", 130, 3, 15, 50, true);
+// var Monk = new character("Tempi", "monk", 160, 3, 45, 45, false);
+// var Troll = new character("Troll", "enemy", 150, 4, 15, 35, false);
+// var Slime = new character("Slime", "enemy", 80, 2, 10, 20, false);
 
 
-console.log(Knight);
-console.log(Mage);
+var knight = $("<div>");
 
-var Knight = $("<div>");
-console.log(Knight);
