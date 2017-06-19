@@ -4,10 +4,39 @@ body {
 	background-repeat: no-repeat;
 }
 
-div[class*="col-"] {
+/*div[class*="col-"] {
 	border: red 1px solid;
-}
+}*/
+
+
 
 .hero {
-	
+
+}
+
+#knight {
+
+}
+
+#teamCamp {
+
+}
+
+#knightImage {
+	width: 100%;
+	margin-top: 70%;
+}
+
+#mageImage {
+	width: 100%;
+	margin-top: 15%;
+}
+
+#priestImage {
+	width: 100%;
+}
+
+#monkImage {
+	width: 100%;
+	margin-top: 50%
 }
