@@ -28,12 +28,12 @@
 // Declare the pre-built character starting stat sets using a multi-dimensional array
 // var characterStats = ["knight", "enemy"];
 
-// var knightStats = ["Bast", "knight", 250, 2, 50, 20, false];
-// var mageStats = ["Denna", "mage", 100, 4, 25, 40, true];
-// var priestStats = ["Auri", "priest", 130, 3, 15, 50, true];
-// var monkStats = ["Tempi", "monk", 160, 3, 45, 45, false];
-// var slimeStats = ["Slime", "enemy", 80, 2, 10, 20, false];
-// var trollStats = ["Troll", "enemy", 150, 4, 15, 35, false];
+var knightStats = ["Bast", "knight", 250, 2, 50, 20, false];
+var mageStats = ["Denna", "mage", 100, 4, 25, 40, true];
+var priestStats = ["Auri", "priest", 130, 3, 15, 50, true];
+var monkStats = ["Tempi", "monk", 160, 3, 45, 45, false];
+var slimeStats = ["Slime", "enemy", 80, 2, 10, 20, false];
+var trollStats = ["Troll", "enemy", 150, 4, 15, 35, false];
 
 
 // A funtion to assign properties to each character
@@ -65,36 +65,56 @@
 // var monk = new Hero("monk");
 // var heroes = ['knight', 'mage', 'priest', 'monk']
 
-var knight = $("<div>");
-knight.addClass("hero alive active col-xs-3");
-knight.attr('id', 'knight');
-$('#teamCamp').append(knight);
-console.log(knight);
-var knightPic = $('<img id="knightImage" src="assets/images/knight.png" alt="knight">');
-knight.append(knightPic);
+// var knight = $("<div>");
+// knight.addClass("hero alive active col-xs-3");
+// knight.attr('id', 'knight');
+// $('#teamCamp').append(knight);
+// console.log(knight);
+// var knightPic = $('<img id="knightImage" src="assets/images/knight.png" alt="knight">');
+// knight.append(knightPic);
 
-var mage = $("<div>");
-mage.addClass("hero alive active col-xs-3");
-mage.attr('id', 'mage');
-$('#teamCamp').append(mage);
-console.log(mage);
-var magePic = $('<img id="mageImage" src="assets/images/mage.png" alt="mage">');
-mage.append(magePic);
+// var mage = $("<div>");
+// mage.addClass("hero alive active col-xs-3");
+// mage.attr('id', 'mage');
+// $('#teamCamp').append(mage);
+// console.log(mage);
+// var magePic = $('<img id="mageImage" src="assets/images/mage.png" alt="mage">');
+// mage.append(magePic);
 
-var priest = $("<div>");
-priest.addClass("hero alive active col-xs-3");
-priest.attr('id', 'priest');
-$('#teamCamp').append(priest);
-console.log(priest);
-var priestPic = $('<img id="priestImage" src="assets/images/priest.png" alt="priest">');
-priest.append(priestPic);
+// var priest = $("<div>");
+// priest.addClass("hero alive active col-xs-3");
+// priest.attr('id', 'priest');
+// $('#teamCamp').append(priest);
+// console.log(priest);
+// var priestPic = $('<img id="priestImage" src="assets/images/priest.png" alt="priest">');
+// priest.append(priestPic);
 
-var monk = $("<div>");
-monk.addClass("hero alive active col-xs-3");
-monk.attr('id', 'monk');
-$('#teamCamp').append(monk);
-console.log(monk);
-var monkPic = $('<img id="monkImage" src="assets/images/monk.png" alt="monk">');
-monk.append(monkPic);
+// var monk = $("<div>");
+// monk.addClass("hero alive active col-xs-3");
+// monk.attr('id', 'monk');
+// $('#teamCamp').append(monk);
+// console.log(monk);
+// var monkPic = $('<img id="monkImage" src="assets/images/monk.png" alt="monk">');
+// monk.append(monkPic);
+
+function Hero(stats) {
+	this.name = stats[0];
+	this.charClass = stats[1];
+	this.hp = stats[2];
+	this.baseAttk = stats[3];
+	this.def = stats[4];
+	this.counterAttack = stats[5];
+	this.range = stats[6];
+	console.log(this);
+}
+
+var mage = new Hero(mageStats);
+var knight = new Hero(knightStats);
+
+var magePic = $('<div><img class="heroPic" src="assets/images/mage.png" alt="mage"></div>');
+magePic.addClass("hero alive active col-xs-3");
+$('#teamCamp').append(magePic);
+
+
 
 
