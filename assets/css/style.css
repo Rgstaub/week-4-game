@@ -4,19 +4,19 @@ body {
 	background-repeat: no-repeat;
 }
 
-div[class*="col-"] {
+/*div[class*="col-"] {
 	border: red 1px solid;
-}
+}*/
 
 
+/*.nodisplay{
 
+	display: none;
+}*/
 .hero {
- width: 100%;
+
 }
 
-.heroPic {
-	width: 100%;
-}
 
 #knight {
 
@@ -28,12 +28,12 @@ div[class*="col-"] {
 
 #knightImage {
 	width: 100%;
-	margin-top: 70%;
+	margin-top: 55%;
 }
 
 #mageImage {
 	width: 100%;
-	margin-top: 15%;
+	margin-top: 25%;
 }
 
 #priestImage {
@@ -42,5 +42,5 @@ div[class*="col-"] {
 
 #monkImage {
 	width: 100%;
-	margin-top: 50%
+	margin-top: 40%
 }
