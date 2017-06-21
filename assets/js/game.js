@@ -48,27 +48,27 @@ function Hero(stats) {
 	this.def = stats[4];
 	this.counterAttack = stats[5];
 	this.range = stats[6];
-	this.position = $("#tc1");
-	this.img = "<img id='" + this.charClass + "Image' src='assets/images/" + this.charClass + ".png' alt='" + this.charClass + ".png'>";
+	this.position = $("#teamCamp");
+	this.divID = ""
+	console.log(this.divID);
+	this.img = "<div class='col-xs-3' id='" + this.charClass + "Div'><img id='" + this.charClass + "Image' src='assets/images/" + this.charClass + ".png' alt='" + this.charClass + ".png'></div>";
 	this.start = function() {
-		campSpots[openCampSpots].append(this.img);
-		openCampSpots--;
+		$("#teamCamp").append(this.img);
 	}
 	this.toCamp = function() {
-		$("#tc1").append(this.img);
+		$("#teamCamp").remove();
 		relocate(this.position);
-		this.position = $("#tc1");
+		this.position = $("#teamCamp");
 		}
 
 	// this.leaveBattle = function() {
 	// 	battlefield.remove(this.img);
 	// 	}
 	this.toBattle = function() {
+		$(this.divId).remove();
+		console.log(this.divId);
+		$("#battlefield").append(this.img);
 		
-		relocate(this.position);
-		this.position = $("#bf1");
-		console.log(this.position);
-		$("#bf1").append(this.img);
 	// this.leaveCamp = function() {
 	// 	this.img.remove();
 	// 	}
