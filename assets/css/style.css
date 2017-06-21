@@ -1,12 +1,12 @@
 body {
-	background-image: url("../images/field.png");
+	background-image: url("../images/grassy.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
 }
 
-/*div[class*="col-"] {
+div[class*="col-"] {
 	border: red 1px solid;
-}*/
+}
 
 
 /*.nodisplay{
