@@ -39,8 +39,6 @@ var openCampSpot = 3;
 var campSpots = [$("#tc1"), $("#tc2"), $("#tc3"), $("#tc4")];
 
 function Hero(stats) {
-	var battlefield = $('#battlefield');
-	var teamCamp = $('#teamCamp');
 	this.name = stats[0];
 	this.charClass = stats[1];
 	this.hp = stats[2];
@@ -49,38 +47,54 @@ function Hero(stats) {
 	this.counterAttack = stats[5];
 	this.range = stats[6];
 	this.position = $("#teamCamp");
-	this.divID = ""
-	console.log(this.divID);
-	this.img = "<div class='col-xs-3' id='" + this.charClass + "Div'><img id='" + this.charClass + "Image' src='assets/images/" + this.charClass + ".png' alt='" + this.charClass + ".png'></div>";
+	this.divId = this.charClass + "Div";
+	console.log(this.divId);
+	this.img = "<div class='col-xs-3 hero' id='" + this.charClass + "Div'><img id='" + this.charClass + "Image' class='hero' src='assets/images/" + this.charClass + ".png' alt='" + this.charClass + ".png'></div>";
+	console.log(this.img);
 	this.start = function() {
 		$("#teamCamp").append(this.img);
 	}
 	this.toCamp = function() {
-		$("#teamCamp").remove();
-		relocate(this.position);
+		relocate(this.divId);
+		console.log(this.divId);
+		$("#teamCamp").append(this.img);
 		this.position = $("#teamCamp");
-		}
-
-	// this.leaveBattle = function() {
-	// 	battlefield.remove(this.img);
-	// 	}
+	}
 	this.toBattle = function() {
-		$(this.divId).remove();
+		relocate(this.divId);
 		console.log(this.divId);
 		$("#battlefield").append(this.img);
-		
-	// this.leaveCamp = function() {
-	// 	this.img.remove();
-	// 	}
+		this.position = $("#battlefield");
 	}
 }
+
+function relocate(divId) {
+	console.log(divId);
+	$('#' +divId).remove();
+}
+
+
 
 var mage = new Hero(mageStats);
 var knight = new Hero(knightStats);
 var priest = new Hero(priestStats);
 var monk = new Hero(monkStats);
 
-function relocate(oldLocation) {
-	console.log(oldLocation)
-	oldLocation.empty();
-}
+knight.start();
+mage.start();
+priest.start();
+monk.start();
+
+$(".hero").on("click", function() {
+	console.log(this.charClass);
+	console.log(this);
+	if (this.position === $("#teamCamp")) {
+		this.toBattle();
+	}
+	else if (this.position === $("#battlefield")) {
+		this.toCamp();
+	}
+	else {
+		console.log("movement error");
+	}
+})

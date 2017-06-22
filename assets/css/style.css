@@ -4,9 +4,9 @@ body {
 	background-repeat: no-repeat;
 }
 
-div[class*="col-"] {
+/*div[class*="col-"] {
 	border: red 1px solid;
-}
+}*/
 
 
 /*.nodisplay{
@@ -23,7 +23,7 @@ div[class*="col-"] {
 }
 
 #teamCamp {
-
+	margin-top:45px;
 }
 
 #knightImage {
