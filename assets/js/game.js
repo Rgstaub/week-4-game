@@ -122,6 +122,7 @@ var heroes = {
 		"attk": 4,
 		"def": 75,
 		"counterAttack": 20,
+		"state": "resting",
 		
 	},
 	"mage": {
@@ -129,6 +130,23 @@ var heroes = {
 		"attk": 15,
 		"def": 25,
 		"counterAttack": 40,
+		"state": "resting",
+		
+	},
+	"priest": {
+		"hp": 100,
+		"attk": 15,
+		"def": 25,
+		"counterAttack": 40,
+		"state": "resting",
+		
+	},
+	"monk": {
+		"hp": 100,
+		"attk": 15,
+		"def": 25,
+		"counterAttack": 40,
+		"state": "resting",
 		
 	},
 }
@@ -143,30 +161,41 @@ var enemies = {
 	"warlock": {
 		"hp": 250,
 		"attk": 4,
-		"def": 75,
+		"def": 45,
 		"counterAttack": 20,	
 	},
 }
 
+var empty = true;
+var currentEnemy = enemies["minataur"]
+console.log(currentEnemy);
+
 $("img").on("click", function() {
-	move(this);
+
 	var clickedHero = $(this).attr("data-hero");
 	var currHero = heroes[clickedHero];
-	// $(this).attr("data-location", "battle");
+	var heroPosition = $(this).attr("data-location");
 
-	
+	if (empty === true && heroPosition === "camp") {
+		empty = false;
+		move(this);
+		currHero.state = "battling";
+		beginBattle(currHero);
+	}
+	else if ($(this).attr("data-location") === "battle") {
+		move(this);
+		empty = true;
+		endBattle();
+	}	
 })
 
 function move(image) {
 	if ($(image).attr("data-location") === "camp") {
-		console.log("move from camp to battlefield");
 		$("#battlefield").append(image);
 		$(image).attr("data-location", "battle");
-		console.log($(image).attr("data-location"));
 		$(image).removeClass("col-xs-3").addClass("col-xs-10 col-xs-offset-2");
 	}
 	else if ($(image).attr("data-location") === "battle") {
-		console.log("move from battlefield to camp");
 		$("#teamCamp").append(image);
 		$(image).attr("data-location", "camp");
 		$(image).removeClass("col-xs-10 col-xs-offset-2").addClass("col-xs-3");
@@ -174,4 +203,13 @@ function move(image) {
 	else {
 		alert("fail");
 	}
+}
+
+function beginBattle(hero) {
+	$("#attackButton").css("display", "inline-block");
+
+}
+
+function endBattle() {
+	$("#attackButton").css("display", "none");
 }

@@ -6,8 +6,8 @@ body {
 
 /*div[class*="col-"] {
 	border: red 1px solid;
-}*/
-
+}
+*/
 
 /*.nodisplay{
 
@@ -17,37 +17,19 @@ body {
 
 }
 
+#attackButton {
+	position: relative;
+	left: 40%;
+	top: 300px;
+	display: none;
+}
 
 #knight {
 	padding-top: 130px;
 }
 
-#priest {
 
-
-}
 
 #teamCamp {
-	margin-top: 100px;
+	margin-top: 90px;
 	height: 150px;
-
-}
-
-#knightImage {
-	width: 100%;
-	margin-top: 55%;
-}
-
-#mageImage {
-	width: 100%;
-	margin-top: 25%;
-}
-
-#priestImage {
-	width: 100%;
-}
-
-#monkImage {
-	width: 100%;
-	margin-top: 40%
-}
