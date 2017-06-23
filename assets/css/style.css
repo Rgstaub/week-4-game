@@ -13,6 +13,24 @@ body {
 
 	display: none;
 }*/
+
+
+h3 {
+	background-color: rgba(0, 0, 0, .5);
+	color: #fff;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	top: -40px;
+	font-size: 150%;
+	width: 55px;
+	line-height: 150%;
+	border-radius: 6px;
+	border: #bbb 1px solid;
+
+}
+
 .hero {
 
 }
@@ -24,11 +42,26 @@ body {
 	display: none;
 }
 
-#knight {
+#knightPic {
 	padding-top: 130px;
+	width: 100%;
 }
 
+#magePic {
+	width: 100%;
+}
 
+#priestPic {
+	width: 100%;
+}
+
+#monkPic {
+	width: 100%;
+}
+
+#minataur {
+	padding-top: 50px;
+}
 
 #teamCamp {
 	margin-top: 90px;

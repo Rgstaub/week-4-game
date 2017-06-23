@@ -170,7 +170,9 @@ var empty = true;
 var currentEnemy = enemies["minataur"]
 console.log(currentEnemy);
 
-$("img").on("click", function() {
+// $("#knight").
+
+$(".hero").on("click", function() {
 
 	var clickedHero = $(this).attr("data-hero");
 	var currHero = heroes[clickedHero];
@@ -207,6 +209,9 @@ function move(image) {
 
 function beginBattle(hero) {
 	$("#attackButton").css("display", "inline-block");
+	var enemy = currentEnemy;
+	var player = hero;
+	$("#attackButton").on("click",)
 
 }
 
