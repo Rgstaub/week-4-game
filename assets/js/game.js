@@ -67,29 +67,29 @@ function Hero(stats) {
 		$(".hero").click(function() {
 			console.log(this);
 			console.log(that);
-			relocate(that);
+		// 	relocate(that);
 
 		});
 	}
 }
 
-function relocate(hero) {
-	console.log(hero);
-	console.log(hero.position);
-	if (hero.position === "teamCamp") {
-		console.log("to battle. currently at " + hero.position);
-		console.log(hero.divId);
-		$("'#" + hero.divId + "'").remove();
-		$("#battlefield").append(hero.img);
+// function relocate(hero) {
+// 	console.log(hero);
+// 	console.log(hero.position);
+// 	if (hero.position === "teamCamp") {
+// 		console.log("to battle. currently at " + hero.position);
+// 		console.log(hero.divId);
+// 		$("'#" + hero.divId + "'").remove();
+// 		$("#battlefield").append(hero.img);
 
-	}
-	else if (hero.position === "battlefield") {
+// 	}
+// 	else if (hero.position === "battlefield") {
 		
-	}
-	else {
+// 	}
+// 	else {
 		
-	}
-}
+// 	}
+// }
 
 var mage = new Hero(mageStats);
 var knight = new Hero(knightStats);
@@ -97,8 +97,18 @@ var priest = new Hero(priestStats);
 var monk = new Hero(monkStats);
 
 knight.initialize();
-// mage.initialize();
-// priest.initialize();
-// monk.initialize();
+mage.initialize();
+priest.initialize();
+monk.initialize();
+
+// $(".hero").click(function() {
+
+// 	console.log(this);
 
 
+
+// 			// console.log(this);
+// 			// console.log(that);
+// 			// relocate(that);
+
+// });
