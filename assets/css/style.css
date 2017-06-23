@@ -15,7 +15,7 @@ body {
 }*/
 
 
-h3 {
+h3.battleHp {
 	background-color: rgba(0, 0, 0, .5);
 	color: #fff;
 	text-align: center;
@@ -26,9 +26,23 @@ h3 {
 	font-size: 150%;
 	width: 55px;
 	line-height: 150%;
-	border-radius: 6px;
-	border: #bbb 1px solid;
+	border-radius: 20px;
+	border: #888 1px solid;
+}
 
+h3.campHp {
+	background-color: rgba(0, 0, 0, .5);
+	color: #fff;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	top: -40px;
+	font-size: 90%;
+	width: 35px;
+	line-height: 150%;
+	border-radius: 20px;
+	border: #888 1px solid;
 }
 
 .hero {
@@ -38,17 +52,20 @@ h3 {
 #attackButton {
 	position: relative;
 	left: 40%;
-	top: 300px;
+	top: 200px;
 	display: none;
+	height: 100px;
 }
 
 #knightPic {
-	padding-top: 130px;
+	padding-top: 100px;
 	width: 100%;
 }
 
+
 #magePic {
 	width: 100%;
+	padding-top: 12px;
 }
 
 #priestPic {
@@ -57,10 +74,16 @@ h3 {
 
 #monkPic {
 	width: 100%;
+	padding-top: 70px;
 }
 
-#minataur {
+#minataurPic {
 	padding-top: 50px;
+}
+
+#ogrePic {
+	position: relative;
+	right: 100px;
 }
 
 #teamCamp {

@@ -118,7 +118,8 @@
 
 var heroes = {
 	"knight": {
-		"hp": 250,
+		"name": "knight",
+		"hp": 350,
 		"attk": 4,
 		"def": 75,
 		"counterAttack": 20,
@@ -126,7 +127,8 @@ var heroes = {
 		
 	},
 	"mage": {
-		"hp": 100,
+		"name": "mage",
+		"hp": 140,
 		"attk": 15,
 		"def": 25,
 		"counterAttack": 40,
@@ -134,6 +136,7 @@ var heroes = {
 		
 	},
 	"priest": {
+		"name": "priest",
 		"hp": 100,
 		"attk": 15,
 		"def": 25,
@@ -142,7 +145,8 @@ var heroes = {
 		
 	},
 	"monk": {
-		"hp": 100,
+		"name": "monk",
+		"hp": 200,
 		"attk": 15,
 		"def": 25,
 		"counterAttack": 40,
@@ -153,35 +157,43 @@ var heroes = {
 
 var enemies = {
 	"minataur": {
+		"name": "minataur",
 		"hp": 250,
 		"attk": 4,
 		"def": 75,
 		"counterAttack": 20,
+		"state": "resting",
 	},
 	"warlock": {
+		"name": "warlock",
 		"hp": 250,
 		"attk": 4,
 		"def": 45,
-		"counterAttack": 20,	
+		"counterAttack": 20,
+		"state": "resting",	
 	},
 }
 
 var empty = true;
 var currentEnemy = enemies["minataur"]
-console.log(currentEnemy);
+console.log("currentEnemy: " + currentEnemy.name);
 
 // $("#knight").
 
 $(".hero").on("click", function() {
 
 	var clickedHero = $(this).attr("data-hero");
+	console.log("clickedHero: " + clickedHero);
 	var currHero = heroes[clickedHero];
+	console.log("currHero: " + currHero);
 	var heroPosition = $(this).attr("data-location");
+	console.log("heroPosition: " + heroPosition);
 
 	if (empty === true && heroPosition === "camp") {
 		empty = false;
 		move(this);
 		currHero.state = "battling";
+		console.log(currHero)
 		beginBattle(currHero);
 	}
 	else if ($(this).attr("data-location") === "battle") {
@@ -192,15 +204,20 @@ $(".hero").on("click", function() {
 })
 
 function move(image) {
+	var hpIcon = $(image).children("h3");
+
 	if ($(image).attr("data-location") === "camp") {
 		$("#battlefield").append(image);
 		$(image).attr("data-location", "battle");
-		$(image).removeClass("col-xs-3").addClass("col-xs-10 col-xs-offset-2");
+		$(image).removeClass("col-xs-3").addClass("col-md-10 col-md-offset-2 battle");
+		hpIcon.addClass("battleHp").removeClass("campHp");
 	}
 	else if ($(image).attr("data-location") === "battle") {
 		$("#teamCamp").append(image);
 		$(image).attr("data-location", "camp");
-		$(image).removeClass("col-xs-10 col-xs-offset-2").addClass("col-xs-3");
+		$(image).removeClass("col-md-10 col-md-offset-2 battle").addClass("col-xs-3");
+		var image = $(image).children("h3");
+		hpIcon.addClass("campHp").removeClass("battleHp");
 	}
 	else {
 		alert("fail");
@@ -211,10 +228,36 @@ function beginBattle(hero) {
 	$("#attackButton").css("display", "inline-block");
 	var enemy = currentEnemy;
 	var player = hero;
-	$("#attackButton").on("click",)
+	$("#attackButton").on("click", function() {
+		redraw(hero);
+	})
 
 }
 
 function endBattle() {
 	$("#attackButton").css("display", "none");
 }
+
+function redraw(character) {
+	console.log($(".battle"));
+	console.log($(".battle > h3"));
+	var hp = $(".battle > h3");
+	hp.text(character.hp);
+}
+
+function draw(characters) {
+	var charNames = ["priest", "mage", "monk", "knight"]
+	console.log(characters[charNames[2]]);
+	var hp = $(".camp > h3");
+	console.log(hp);
+	console.log(heroes.length);
+	for (var i = 0; i < 4; i++) {
+		// hp[i].text(characters[charNames[i]].hp);
+		console.log(hp[i]);
+		$(hp[i]).text(characters[charNames[i]].hp);
+	}
+	
+
+}
+
+draw(heroes);
