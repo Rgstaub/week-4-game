@@ -14,11 +14,29 @@
 <div class="container-fluid">
 	<div class="row">
 		<!-- The team window -->
-		<div id="teamCamp" class="col-xs-8"></div>
+		<div id="teamCamp" class="col-xs-8">
+			<img class="col-xs-3" id="priest" data-hero="priest" data-location="camp" src="assets/images/priest.png" alt="priest">
+			<img class="col-xs-3" id="mage" data-hero="mage" data-location="camp" src="assets/images/mage.png" alt="mage">
+
+			<img class="col-xs-3" id="monk" data-hero="monk" data-location="camp" src="assets/images/monk.png" alt="mage">
+			<img class="col-xs-3" id="knight" data-hero="knight" data-location="camp" src="assets/images/knight.png" alt="knight">
+		</div>
 		<!-- Player inventory window -->
 		<div id="inventory" class="col-xs-4"></div>
-		<!-- Selected hero and enemy go here to battle -->
-		<div id="battlefield" class="col-xs-12"></div>
+	</div>	
+	<!-- Selected hero and enemy go here to battle -->
+	<div class="row">
+		<div id="battlefield" class="col-xs-4">
+		
+		</div>
+		<div id="actionField" class="col-xs-4">
+			
+		</div>
+		<div id="enemyField" class="col-xs-4">
+			<img id="minataur" data-enemy="minataur" data-location="battlefield" src="assets/images/minataur.png" alt="minataur">
+		</div>
+	</div>
+		<
 		<!-- Enemies waiting to battle live here -->
 		<div id="enemyCamp" class="col-xs-12"></div>
 	</div>
