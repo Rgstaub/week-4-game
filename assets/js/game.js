@@ -178,14 +178,22 @@ function beginBattle() {
 		var damageDone = chosenHero.attk * chosenHero.level;
 		console.log("damageDone: " + damageDone);
 		currentEnemy.hp -= damageDone;
+		if (currentEnemy.hp < 1) {
+			nextEnemy();
+		}
 		console.log("enemy hp: " +currentEnemy.hp)
 		chosenHero.level++;
 		var damageTaken = currentEnemy.counterAttack;
 		console.log("damage taken: " + damageTaken);
 		chosenHero.hp -= damageTaken;
 		console.log("hero hp: " + chosenHero.hp);
+
 		redraw();
 	})
+}
+
+function nextEnemy() {
+	
 }
 
 function endBattle() {
