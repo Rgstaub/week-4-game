@@ -86,63 +86,105 @@ var enemies = {
 	},
 }
 
-var empty = true;
-var currentEnemy = enemies["minataur"]
+var chosenEmpty = true;
+var opponentEmpty = true;
+var currentEnemy = {};
+var currentEnemyAvatar
+var chosenHero = {};
+var chosenHeroAvatar = {};
 console.log("currentEnemy: " + currentEnemy.name);
 
-// $("#knight").
 
 $(".hero").on("click", function() {
 
 	var clickedHero = $(this).attr("data-hero");
 	var currHero = heroes[clickedHero];
+
+	
 	var heroPosition = $(this).attr("data-location");
 
-	if (empty === true && heroPosition === "camp") {
-		empty = false;
+	if (chosenEmpty === true && heroPosition === "camp") {
+		chosenHero = currHero;
+		chosenEmpty = false;
 		move(this);
 		currHero.state = "battling";
-		beginBattle(currHero);
+		console.log(this.id);
+		$(this).children("img").attr("src", "assets/images/" + this.id + "Picked.png");
+		chosenHeroAvatar = this;
+		chosenHero = currHero;
+		console.log(chosenHero);
+		selectOpponent();
 	}
-	else if ($(this).attr("data-location") === "battle") {
-		move(this);
-		empty = true;
-		endBattle();
-	}	
+	return;
+	// else if ($(this).attr("data-location") === "battle") {
+	// 	move(this);
+	// 	empty = true;
+	// 	endBattle();
+	// }	
 })
+
+function selectOpponent() {
+	// var clickedOpp = $(this).attr("data-hero");
+	// console.log(clickedOpp);
+	// var currOpp = heroes[clickedOpp];
+	// console.log(currOpp);
+
+	$(".camp").on("click", function() {
+		var clickedOpp = $(this).attr("data-hero");
+
+		var currOpp = heroes[clickedOpp];
+
+		if (opponentEmpty === true) {
+			currentEnemy = currOpp;
+			console.log(currentEnemy);
+			opponentEmpty = false;
+			$("#enemyField").append(this);
+			$(this).removeClass("col-xs-3 camp").addClass("col-md-10 col-md-offset-2 battle");
+			$(this).children("h3").addClass("battleHp").removeClass("campHp");
+			currentEnemyAvatar = this;
+			beginBattle()
+		}
+	})
+	return;
+}
+
 
 function move(image) {
 	var hpIcon = $(image).children("h3");
 
-	if ($(image).attr("data-location") === "camp") {
-		$("#battlefield").append(image);
+	// if ($(image).attr("data-location") === "camp") {
+		$("#chosenField").append(image);
 		$(image).attr("data-location", "battle");
-		$(image).removeClass("col-xs-3").addClass("col-md-10 col-md-offset-2 battle");
+		$(image).removeClass("col-xs-3 camp").addClass("col-md-10 battle");
 		hpIcon.addClass("battleHp").removeClass("campHp");
-	}
-	else if ($(image).attr("data-location") === "battle") {
-		$("#teamCamp").append(image);
-		$(image).attr("data-location", "camp");
-		$(image).removeClass("col-md-10 col-md-offset-2 battle").addClass("col-xs-3");
-		hpIcon.addClass("campHp").removeClass("battleHp");
-	}
-	else {
-		alert("move fail");
-	}
+		return;
+	// }
+	// else if ($(image).attr("data-location") === "battle") {
+	// 	$("#teamCamp").append(image);
+	// 	$(image).attr("data-location", "camp");
+	// 	$(image).removeClass("col-md-10 col-md-offset-2 battle").addClass("col-xs-3");
+	// 	hpIcon.addClass("campHp").removeClass("battleHp");
+	// }
+	// else {
+	// 	alert("move fail");
+	// }
 }
 
-function beginBattle(hero) {
+function beginBattle() {
 	$("#attackButton").css("display", "inline-block");
-	var enemy = currentEnemy;
-	var player = hero;
+	// var enemy = currentEnemy;
+	// var player = chosenHero;
 	$("#attackButton").on("click", function() {
-		var damageDone = player.attk * player.level;
-		currentEnemy.hp = currentEnemy.hp - damageDone;
-		console.log(player + currentEnemy.hp);
-		player.level++;
+		var damageDone = chosenHero.attk * chosenHero.level;
+		console.log("damageDone: " + damageDone);
+		currentEnemy.hp -= damageDone;
+		console.log("enemy hp: " +currentEnemy.hp)
+		chosenHero.level++;
 		var damageTaken = currentEnemy.counterAttack;
-		player.hp = player.hp - damageTaken;
-		redraw(hero);
+		console.log("damage taken: " + damageTaken);
+		chosenHero.hp -= damageTaken;
+		console.log("hero hp: " + chosenHero.hp);
+		redraw();
 	})
 }
 
@@ -150,10 +192,14 @@ function endBattle() {
 	$("#attackButton").css("display", "none");
 }
 
-function redraw(character) {
-	var hp = $(".battle > h3");
-	hp.text(character.hp);
-	var enemyHp = $("#enemyField > h3");
+function redraw() {
+	console.log(chosenHeroAvatar);
+	console.log(currentEnemyAvatar);
+	var chosenHp = $(chosenHeroAvatar).children("h3");
+	console.log("chosenHP div: " + chosenHp);
+	console.log("hero hp: " + chosenHero.hp);
+	chosenHp.text(chosenHero.hp);
+	var enemyHp = $(currentEnemyAvatar).children("h3");
 	enemyHp.text(currentEnemy.hp);
 }
 
