@@ -104,7 +104,7 @@ $(".hero").off().on("click", function() {
 	var clickedHero = $(this).attr("data-hero");
 	var currHero = heroes[clickedHero];
 	var heroPosition = $(this).attr("data-location");
-	if (chosenEmpty === true && heroPosition === "camp") {
+	if (chosenEmpty === true) {
 		chosenHero = currHero;
 		chosenEmpty = false;
 		$(".select")[0].play();
@@ -115,30 +115,39 @@ $(".hero").off().on("click", function() {
 		chosenHeroAvatar = this;
 		chosenHero = currHero;
 		console.log(chosenHero);
-		selectOpponent();
 		return;
+	}
+	else if (chosenEmpty === false && opponentEmpty === true) {
+		currentEnemy = currHero;
+		currentEnemyAvatar = this;
+		$(".select")[0].play();
+		opponentEmpty = false;
+		$("#enemyField").append(this);
+		$(this).removeClass("col-xs-3 camp").addClass("col-md-10 col-md-offset-2 battle");
+		$(this).children("h3").addClass("battleHp").removeClass("campHp");
+		beginBattle();
 	}
 })
 
-function selectOpponent() {
-	$(".camp").off().on("click", function() {
-		var clickedOpp = $(this).attr("data-hero");
-		var currOpp = heroes[clickedOpp];
-		if (opponentEmpty === true) {
-			currentEnemy = currOpp;
-			$(".select")[0].play();
-			console.log(currentEnemy);
-			opponentEmpty = false;
-			$("#enemyField").append(this);
-			$(this).removeClass("col-xs-3 camp").addClass("col-md-10 col-md-offset-2 battle");
-			$(this).children("h3").addClass("battleHp").removeClass("campHp");
-			currentEnemyAvatar = this;
-			beginBattle()
-		}
+// function selectOpponent() {
+// 	$(".camp").off().on("click", function() {
+// 		var clickedOpp = $(this).attr("data-hero");
+// 		var currOpp = heroes[clickedOpp];
+// 		if (opponentEmpty === true) {
+// 			currentEnemy = currOpp;
+// 			$(".select")[0].play();
+// 			console.log(currentEnemy);
+// 			opponentEmpty = false;
+// 			$("#enemyField").append(this);
+// 			$(this).removeClass("col-xs-3 camp").addClass("col-md-10 col-md-offset-2 battle");
+// 			$(this).children("h3").addClass("battleHp").removeClass("campHp");
+// 			currentEnemyAvatar = this;
+// 			beginBattle()
+// 		}
 
-	})
-	return;
-}
+// 	})
+// 	return;
+// }
 
 
 function move(image) {
@@ -179,6 +188,11 @@ function gameOver() {
 	endBattle();
 	chosenEmpty = true;
 	opponentEmpty = true;
+	console.log($(".hero"));
+	$(".hero").css("display", "block");
+	$(".hero").children("img").each(function(i) {
+		$(this).attr("src", "assets/images/" + this.id + ".png");
+	});
 	draw(heroes);
 
 }
@@ -188,7 +202,6 @@ function nextEnemy() {
 	$(currentEnemyAvatar).css("display", "none");
 	opponentEmpty = true;
 	endBattle();
-	selectOpponent();
 }
 
 function endBattle() {
