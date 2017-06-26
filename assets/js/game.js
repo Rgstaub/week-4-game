@@ -96,7 +96,7 @@ var currentEnemy = {};
 var currentEnemyAvatar
 var chosenHero = {};
 var chosenHeroAvatar = {};
-console.log("currentEnemy: " + currentEnemy.name);
+var wins = 0;
 
 
 $(".hero").off().on("click", function() {
@@ -114,6 +114,8 @@ $(".hero").off().on("click", function() {
 		$(this).children("img").attr("src", "assets/images/" + this.id + "Picked.png");
 		chosenHeroAvatar = this;
 		chosenHero = currHero;
+		$("#chooseHero").css("display", "none");
+		$("#selectOpp").css("display", "block")
 		console.log(chosenHero);
 		return;
 	}
@@ -125,29 +127,10 @@ $(".hero").off().on("click", function() {
 		$("#enemyField").append(this);
 		$(this).removeClass("col-xs-3 camp").addClass("col-md-10 col-md-offset-2 battle");
 		$(this).children("h3").addClass("battleHp").removeClass("campHp");
+		$("#selectOpp").css("display", "none")
 		beginBattle();
 	}
 })
-
-// function selectOpponent() {
-// 	$(".camp").off().on("click", function() {
-// 		var clickedOpp = $(this).attr("data-hero");
-// 		var currOpp = heroes[clickedOpp];
-// 		if (opponentEmpty === true) {
-// 			currentEnemy = currOpp;
-// 			$(".select")[0].play();
-// 			console.log(currentEnemy);
-// 			opponentEmpty = false;
-// 			$("#enemyField").append(this);
-// 			$(this).removeClass("col-xs-3 camp").addClass("col-md-10 col-md-offset-2 battle");
-// 			$(this).children("h3").addClass("battleHp").removeClass("campHp");
-// 			currentEnemyAvatar = this;
-// 			beginBattle()
-// 		}
-
-// 	})
-// 	return;
-// }
 
 
 function move(image) {
@@ -161,6 +144,7 @@ function move(image) {
 }
 
 function beginBattle() {
+	$("#attack").css("display", "block");
 	$("#attackButton").css("display", "inline-block");
 	$("#attackButton").off().on("click", function() {
 		$(".sword")[Math.floor(Math.random() * 17)].play();
@@ -193,19 +177,44 @@ function gameOver() {
 	$(".hero").children("img").each(function(i) {
 		$(this).attr("src", "assets/images/" + this.id + ".png");
 	});
+	$("#teamCamp").append($(".hero"));
+	var orderedNames = $(".hero").id;
+	console.log(orderedNames);
 	draw(heroes);
+	$("#gameOver").css("display", "block");
+	$("#newGameButton").css("display", "block");
+	chosenEmpty = false;
+	opponentEmpty = false;
 
 }
 
 
 function nextEnemy() {
+	wins++;
+	console.log("wins: " + wins);
 	$(currentEnemyAvatar).css("display", "none");
 	opponentEmpty = true;
+	$("#attack").css("display", "none");
+	$("#selectOpp").css("display", "block");
+	if (wins === 3) {
+		youWin();
+	}
 	endBattle();
+}
+
+function youWin() {
+
+	wins = 0;
+	$("#youWin").css("display", "block");
+	$("#newGameButton").css("display", "block");
+	$("#selectOpp").css("display", "none");
+	chosenEmpty = false;
+	opponentEmpty = false;
 }
 
 function endBattle() {
 	$("#attackButton").css("display", "none");
+	$("#attack").css("display", "none");
 }
 
 function redraw() {
@@ -217,12 +226,20 @@ function redraw() {
 }
 
 function draw(characters) {
-	var charNames = ["priest", "mage", "monk", "knight"]
+	heroes.knight.level = 1;
+	heroes.mage.level = 1;
+	heroes.priest.level = 1;
+	heroes.monk.level = 1;
 	var hp = $(".hero > h3");
+	$(".hero").each(function(i) {
+		$(this).css("display", "incline-block")
+	})
+	var lineup = $("#teamCamp").children();
 	for (var i = 0; i < 4; i++) {
+		// var orderedName = lineup[i].id;
 
-		characters[charNames[i]].hp = characters[charNames[i]].initHp;
-		$(hp[i]).text(characters[charNames[i]].initHp);
+		characters[lineup[i].id].hp = characters[lineup[i].id].initHp;
+		$(hp[i]).text(characters[lineup[i].id].initHp);
 	}
 	var allHeroes = $(".hero");
 	var allTags = $(".hp")
@@ -233,3 +250,14 @@ function draw(characters) {
 }
 
 draw(heroes);
+
+$("#newGameButton").on("click", function() {
+	chosenEmpty = true;
+	opponentEmpty = true;
+	$("#newGameButton").css("display", "none");
+	$("#gameOver").css("display", "none");
+	$("#youWin").css("display", "none");
+	$("#chooseHero").css("display", "block");
+	draw(heroes);
+
+})

@@ -15,6 +15,9 @@ body {
 	display: none;
 }*/
 
+h1 {
+	text-align: center;
+}
 
 h3.battleHp {
 	background-color: rgba(0, 0, 0, .5);
@@ -52,12 +55,24 @@ h3.campHp {
 
 }
 
+#attack {
+	display: none;
+}
+
 #attackButton {
 	position: relative;
 	left: 40%;
 	top: 200px;
 	display: none;
 	height: 100px;
+}
+
+#chooseHero {
+
+}
+
+#gameOver {
+	display: none;
 }
 
 #knightPic {
@@ -84,11 +99,25 @@ h3.campHp {
 	padding-top: 50px;
 }
 
+#newGameButton {
+	display: none;
+	margin: auto;
+}
+
 #ogrePic {
 	position: relative;
 	right: 100px;
 }
 
+#selectOpp {
+	display: none;
+}
+
 #teamCamp {
 	margin-top: 90px;
 	height: 150px;
+}
+
+#youWin {
+	display: none;
+}
